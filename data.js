@@ -114,7 +114,6 @@ let icons = [
 ];
 
 
-
 const iconsBox = document.getElementById("icons-container");
 const selectType = document.getElementById("type-filter");
 
@@ -123,6 +122,7 @@ selectType.addEventListener("change", function(){
 	renderIconBoxes(this.value);
 });
 
+popolateSelect(selectType);
 renderIconBoxes();
 
 function renderIconBoxes(iconType=""){
@@ -173,4 +173,33 @@ function getRandomColor(){
 function getRandomNumber(min, max){
 
 	return Math.floor(Math.random() * (max - min)) - min;
+}
+
+function getOptions(){
+
+	let options = [icons[0].type];
+
+	console.log(icons.length);
+	
+	for (let i=1; i < icons.length; i++){
+		
+		if (! options.includes(icons[i].type)){
+			options.push(icons[i].type);
+		}
+	}
+	return options;
+}
+
+
+function popolateSelect(select){
+
+	let html = `<option value="">all</option>`;
+	let options = getOptions();
+	console.log("options", options);
+
+	options.forEach((option) => {
+		html += `<option value="${option}">${option}</option>`;
+	});
+
+	select.innerHTML = html;
 }

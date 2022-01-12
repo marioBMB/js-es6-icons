@@ -120,25 +120,24 @@ const selectType = document.getElementById("type-filter");
 
 
 selectType.addEventListener("change", function(){
-	let type = selectType.options[selectType.selectedIndex].value;
-	renderIconBoxes(type);
+	renderIconBoxes(this.value);
 });
 
+renderIconBoxes();
 
-function renderIconBoxes(iconType){
+function renderIconBoxes(iconType=""){
 
-	
 	html = "";
+	let iconsClone = [...icons];
 	
 	if (iconType != ""){
 		
-		icons = icons.filter((item) => {
+		iconsClone = icons.filter((item) => {
 			return iconType === item.type;
 		});
 	}
 
-	icons.forEach((item) => {
-		
+	iconsClone.forEach((item) => {		
 		html += getIconTemplate(item);
 	});
 
@@ -148,7 +147,7 @@ function renderIconBoxes(iconType){
 
 function getIconTemplate(postData){
 
-	const { name, prefix, type, family, color } = postData;
+	const { name, prefix, family, color } = postData;
 
 	return `<div class="box">
 				<i class="${family} ${prefix}${name}" style='color: ${color}'></i>

@@ -150,11 +150,10 @@ function getIconTemplate(postData){
 	const { name, prefix, family, color } = postData;
 
 	return `<div class="box">
-				<i class="${family} ${prefix}${name}" style='color: ${getRandomColor()}'></i>
+				<i class="${family} ${prefix}${name}" style='color: ${getRandomColor()};'></i>
 				<div class="title">${name}</div>
 			</div>`;
 }
-
 
 
 function getRandomColor(){

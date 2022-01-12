@@ -150,8 +150,27 @@ function getIconTemplate(postData){
 	const { name, prefix, family, color } = postData;
 
 	return `<div class="box">
-				<i class="${family} ${prefix}${name}" style='color: ${color}'></i>
+				<i class="${family} ${prefix}${name}" style='color: ${getRandomColor()}'></i>
 				<div class="title">${name}</div>
 			</div>`;
 }
 
+
+
+function getRandomColor(){
+
+	let hexAlphabet = "0123456789abcdef";
+	let colorHex = "#";
+
+	for (let i = 0; i < 6; i++){
+		let index = getRandomNumber(0, 15);
+		colorHex += hexAlphabet[index];
+	}
+	return colorHex;
+}
+
+
+function getRandomNumber(min, max){
+
+	return Math.floor(Math.random() * (max - min)) - min;
+}
